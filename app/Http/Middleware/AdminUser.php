@@ -22,7 +22,7 @@ class AdminUser
         $is_admin = DB::table('users')->where('id', $auth_user)->where('is_admin', true)->first();
         if (!$is_admin){
             // return whatever you want here, I'd redirect to homepage for example or some 401 page
-            return response()->json(['error' => 'true', 'message' => 'unauthenticated'],401);
+            return response()->json(['error' => 'true', 'message' => 'Unauthorized'],401);
         }
 
         return $next($request);
