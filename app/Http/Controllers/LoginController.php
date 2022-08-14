@@ -15,7 +15,7 @@ class LoginController extends Controller
             $data = Auth::user();
             $token = $data->createToken("user")->accessToken;
 
-            return response()->json(['token' => $token]);
+            return response()->json(['error' => 'false', 'message' => 'user loggedin successfully' ,'token' => $token]);
         }
         else{
             return response()->json(['error' => 'true', 'message' => 'invalid credentials']);
