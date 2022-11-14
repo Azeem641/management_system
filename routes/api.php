@@ -2,8 +2,8 @@
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\ProductsController;
-use App\Http\Controllers\RegistrationController;
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\TasksController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,20 +17,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-Route::post('/login', [LoginController::class, 'login']);
-Route::post('/registration', [RegistrationController::class, 'signUp']);
-
-
-$router->group(['middleware' => 'auth:api'], function () use ($router) {
     Route::post('/logout', [LoginController::class, 'logout']);
-    Route::post('/add-product', [ProductsController::class, 'create'])->middleware('admin');
-    Route::post('/get-products', [ProductsController::class, 'getAllProducts']);
-    Route::post('/product-detil', [ProductsController::class, 'productDetail']);
-});
+    Route::post('/get-projects', [ProjectController::class, 'getAllProducts']);
+    Route::post('/create-task', [TasksController::class, 'createTask']);
+    Route::post('/update-task', [TasksController::class, 'updateTask']);
+    Route::post('/delete-task', [TasksController::class, 'deleteTask']);
+    Route::post('/tasks-listing', [TasksController::class, 'listAllTasks']);
+    Route::post('/project-tasks', [TasksController::class, 'projectTasks']);
 
 // $router->group(['middleware' => 'auth:api', 'auth'], function () use ($router) {
 // });
